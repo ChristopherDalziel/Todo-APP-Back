@@ -5,17 +5,17 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require("mongoose");
 const todoRoutes = express.Router();
-const PORT = 4000; 
+const PORT = process.env.PORT || 4000; 
 
 // Import our model
-let Todo = require('./todo.model')
+let Todo = require('./Todo')
 
 // Creating middle wear?
 app.use(cors());
 app.use(bodyParser.json());
 
 // Creating the connection
-mongoose.connect('mongodb://127.0.0.1:27017/todos', {useNewUrlParser: true});
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true});
 
 // Reference to the object
 const connection = mongoose.connection;
